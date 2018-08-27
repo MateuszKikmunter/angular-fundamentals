@@ -1,23 +1,22 @@
-import { EventRouterActivator } from './common/event-router-activator.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { EventsAppComponent } from './events-app/events-app.component';
-import { EventsListComponent } from './events/events-list/events-list.component';
-import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
-import { NavComponent } from './nav/nav.component';
-import { EventService } from './events/shared/event.service';
-import { ToastrService } from './common/toastr.service';
-import { EventsDetailComponent } from './events/events-detail/events-detail.component';
-import { RouterModule } from '@angular/router';
-import { appRoutes } from './routes';
-import { CreateEventComponent } from './create-event/create-event.component';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { EventsListResolver } from './common/events-list-resolver.service';
-import { ProfileComponent } from './user/profile/profile.component';
+import { 
+  EventsListComponent,
+  EventThumbnailComponent,
+  EventService,
+  EventsListResolver,
+  CreateEventComponent,
+  EventsDetailComponent,
+  EventRouterActivator } from './events/index';
 
+import { EventsAppComponent } from './events-app/events-app.component';
+import { NavComponent } from './nav/nav.component';
+import { ToastrService } from './common/toastr.service';
+import { appRoutes } from './routes';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 
 @NgModule({
   declarations: [
