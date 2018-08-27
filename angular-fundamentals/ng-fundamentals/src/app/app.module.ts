@@ -28,8 +28,7 @@ import { ProfileComponent } from './user/profile/profile.component';
     NavComponent,
     EventsDetailComponent,
     CreateEventComponent,
-    NotFoundComponent,
-    ProfileComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
