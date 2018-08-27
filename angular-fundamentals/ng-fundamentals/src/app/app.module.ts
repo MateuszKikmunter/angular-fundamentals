@@ -1,3 +1,4 @@
+import { EventRouterActivator } from './common/event-router-activator.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { EventsListResolver } from './common/events-list-resolver.service';
 
 
 @NgModule({
@@ -31,7 +33,22 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ EventService, ToastrService ],
+  providers: [
+    EventService,
+    ToastrService,
+    EventRouterActivator,
+    EventsListResolver,
+    {
+      provide: "canCancelEventCreation",
+      useValue: checkDirtyState
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function checkDirtyState(component: CreateEventComponent) {
+  if(component.isDirty){
+    return confirm("Are you sure? Unsaved changes will be lost.");
+  }
+}
