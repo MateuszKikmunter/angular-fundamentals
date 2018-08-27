@@ -16,6 +16,7 @@ import { appRoutes } from './routes';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { EventsListResolver } from './common/events-list-resolver.service';
+import { ProfileComponent } from './user/profile/profile.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { EventsListResolver } from './common/events-list-resolver.service';
     NavComponent,
     EventsDetailComponent,
     CreateEventComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
