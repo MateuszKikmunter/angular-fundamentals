@@ -1,3 +1,25 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <h1>Edit your profile</h1>
+  <hr>
+  <div class="col-md-4">
+
+    <form [formGroup]="profileForm" class="form-horizontal" novalidate autocomplete="off" (ngSubmit)="saveProfile(profileForm.value)">
+      <div class="form-group" [ngClass]="{ 'error': !validateFirstName() }">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" class="form-control" name="first-name" placeholder="First Name..." formControlName="firstName"/>
+        <em class="error" *ngIf="!validateFirstName()">First Name is required.</em>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'error': !validateLastName() }">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" class="form-control" name="last-name" placeholder="Last Name..." formControlName="lastName" />
+        <em class="error" *ngIf="!validateLastName()">Last Name is required.</em>
+      </div>
+
+      <div class="btn-group form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Save</button>
+        <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

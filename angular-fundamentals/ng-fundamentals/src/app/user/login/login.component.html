@@ -16,12 +16,14 @@
         <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseOverLogin)" class="text-danger">Password is required.</em>
       </div>
 
-      <span (mouseenter)="mouseOverLogin=true" (mouseLeave)="mouseOverLogin=false">
-        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Save</button>
-      </span>
-      <span>
-        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-      </span>
+      <div class="form-group btn-group">
+          <span (mouseenter)="mouseOverLogin=true" (mouseLeave)="mouseOverLogin=false">
+              <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Save</button>
+            </span>
+            <span>
+              <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            </span>
+      </div>
     </form>
   </div>
 
