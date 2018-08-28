@@ -15,6 +15,13 @@ export class EventService {
   getEventById(eventId: number): IEvent {
     return EVENTS.find(e => e.id === eventId);
   }
+
+  saveEvent(event: IEvent){
+    event.id = Math.max.apply(null, EVENTS.map(e => e.id)) + 1;
+    console.log(event.id);
+    event.sessions = [];
+    EVENTS.push(event);
+  }
 }
 
 const EVENTS: IEvent[] = [

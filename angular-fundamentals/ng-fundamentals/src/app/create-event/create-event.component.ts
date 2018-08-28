@@ -1,24 +1,19 @@
+import { EventService } from './../events/shared/event.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { IEvent } from '../events';
 
 @Component({
   selector: 'app-create-event',
-  template: `<h1>New Event</h1>
-  <hr>
-  <div class='col-md-6'>
-  <h3>Create form will go here</h3>
-  </div>
-  <br/>
-  <br/>
-  <button type='submit' class='btn btn-primary'>Save</button>
-  <button type='button' class='btn btn-default' (click)="goBack()">Cancel</button>`,
+  templateUrl: "./create-event.component.html",
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
 
   isDirty: boolean = true;
+  newEvent: IEvent;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private eventService: EventService) { }
 
   ngOnInit() {
   }
@@ -28,4 +23,9 @@ export class CreateEventComponent implements OnInit {
     this.router.navigateByUrl("events");
   };
 
+  saveEvent(formValues){
+    this.eventService.saveEvent(formValues);
+    this.isDirty = false;
+    this.goBack();
+  }
 }
