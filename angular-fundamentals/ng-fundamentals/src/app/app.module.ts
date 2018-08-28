@@ -17,6 +17,7 @@ import { NavComponent } from './nav/nav.component';
 import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
     {
       provide: "canCancelEventCreation",
       useValue: checkDirtyState
-    }
+    },
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
