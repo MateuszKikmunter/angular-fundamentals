@@ -27,9 +27,10 @@ export class ProfileComponent implements OnInit {
 
   buildForm(): void {
     let currentUser = this.authService.currentUser;
+    let commonValidators = [Validators.required, Validators.pattern("[a-zA-Z].*")];
     this.profileForm = this.formBuilder.group({
-      firstName: new FormControl(currentUser ? currentUser.firstName : "", [Validators.required]),
-      lastName: new FormControl(currentUser ? currentUser.lastName : "", [Validators.required])
+      firstName: new FormControl(currentUser ? currentUser.firstName : "", commonValidators),
+      lastName: new FormControl(currentUser ? currentUser.lastName : "", commonValidators)
     });
   }
 

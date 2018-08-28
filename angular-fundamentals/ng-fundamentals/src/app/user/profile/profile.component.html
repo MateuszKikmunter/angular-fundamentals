@@ -7,13 +7,15 @@
       <div class="form-group" [ngClass]="{ 'error': !validateFirstName() }">
         <label for="first-name">First Name:</label>
         <input type="text" id="first-name" class="form-control" name="first-name" placeholder="First Name..." formControlName="firstName"/>
-        <em class="error" *ngIf="!validateFirstName()">First Name is required.</em>
+        <em class="error" *ngIf="!validateFirstName() && profileForm.controls.firstName?.errors.required">First Name is required.</em>
+        <em class="error" *ngIf="!validateFirstName() && profileForm.controls.firstName?.errors.pattern">First Name must start with a letter.</em>
       </div>
 
       <div class="form-group" [ngClass]="{ 'error': !validateLastName() }">
         <label for="last-name">Last Name:</label>
         <input type="text" id="last-name" class="form-control" name="last-name" placeholder="Last Name..." formControlName="lastName" />
-        <em class="error" *ngIf="!validateLastName()">Last Name is required.</em>
+        <em class="error" *ngIf="!validateLastName() && profileForm.controls.lastName?.errors.required">Last Name is required.</em>
+        <em class="error" *ngIf="!validateLastName() && profileForm.controls.lastName?.errors.pattern">Last Name must start with a letter.</em>
       </div>
 
       <div class="btn-group form-group">
