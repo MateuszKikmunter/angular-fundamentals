@@ -1,3 +1,4 @@
+import { ISession } from './../../shared/event.session';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '../../../../../node_modules/@angular/forms';
 
@@ -34,7 +35,17 @@ export class CreateSessionComponent implements OnInit {
   }
 
   saveSession(newSessionFormValues) : void{
-    console.log(newSessionFormValues);
+    let session: ISession = {
+      id: undefined,
+      name: newSessionFormValues.name,
+      presenter: newSessionFormValues.presenter,
+      duration: +newSessionFormValues.duration,
+      level: newSessionFormValues.level,
+      abstract: newSessionFormValues.abstract,
+      voters: []
+    };
+
+    console.log(session);
   }
 
 }
