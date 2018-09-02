@@ -19,6 +19,7 @@ import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { AuthService } from './user/auth.service';
+import { CreateSessionComponent } from './events/events-detail/create-session/create-session.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthService } from './user/auth.service';
     NavComponent,
     EventsDetailComponent,
     CreateEventComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CreateSessionComponent
   ],
   imports: [
     BrowserModule,
