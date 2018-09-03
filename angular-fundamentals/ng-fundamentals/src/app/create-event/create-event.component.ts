@@ -18,14 +18,10 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {
   }
 
-  goBack(): void {
-    //this.router.navigate("[/events]");
-    this.router.navigateByUrl("events");
-  };
-
   saveEvent(formValues){
+    console.log(formValues);
     this.eventService.saveEvent(formValues);
     this.isDirty = false;
-    this.goBack();
+    this.router.navigateByUrl("events");
   }
 }

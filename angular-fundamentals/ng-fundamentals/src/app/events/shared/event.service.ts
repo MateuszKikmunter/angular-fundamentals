@@ -17,10 +17,11 @@ export class EventService {
   }
 
   saveEvent(event: IEvent){
-    event.id = Math.max.apply(null, EVENTS.map(e => e.id)) + 1;
-    console.log(event.id);
+    console.log(event);
+    event.id = 999;
     event.sessions = [];
     EVENTS.push(event);
+    console.log()
   }
 }
 
