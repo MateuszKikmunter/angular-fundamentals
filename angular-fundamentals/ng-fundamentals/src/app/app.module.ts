@@ -21,6 +21,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { AuthService } from './user/auth.service';
 import { CreateSessionComponent } from './events/events-detail/create-session/create-session.component';
 import { SessionListComponent } from './events/events-detail/session-list/session-list.component';
+import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SessionListComponent } from './events/events-detail/session-list/sessio
     CreateEventComponent,
     NotFoundComponent,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
   ],
   imports: [
     BrowserModule,
