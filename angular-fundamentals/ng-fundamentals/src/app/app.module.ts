@@ -20,6 +20,7 @@ import { appRoutes } from './routes';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { AuthService } from './user/auth.service';
 import { CreateSessionComponent } from './events/events-detail/create-session/create-session.component';
+import { SessionListComponent } from './events/events-detail/session-list/session-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CreateSessionComponent } from './events/events-detail/create-session/cr
     EventsDetailComponent,
     CreateEventComponent,
     NotFoundComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent
   ],
   imports: [
     BrowserModule,
