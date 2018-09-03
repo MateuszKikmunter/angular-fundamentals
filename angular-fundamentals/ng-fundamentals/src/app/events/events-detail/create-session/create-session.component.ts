@@ -1,6 +1,9 @@
+import { map } from 'rxjs/operators';
+import { element } from 'protractor';
 import { ISession } from './../../shared/event.session';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '../../../../../node_modules/@angular/forms';
+import { restrictedWords } from '../../shared/restricted-words.validator';
 
 @Component({
   selector: 'app-create-session',
@@ -23,7 +26,7 @@ export class CreateSessionComponent implements OnInit {
     this.presenter = new FormControl('', [Validators.required]);
     this.duration = new FormControl('', [Validators.required]);
     this.level = new FormControl('', [Validators.required]);
-    this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400)]);
+    this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), restrictedWords(["foo", "bar"])]);
 
     this.newSessionForm = new FormGroup({
       name: this.name,
@@ -34,7 +37,7 @@ export class CreateSessionComponent implements OnInit {
     })
   }
 
-  saveSession(newSessionFormValues) : void{
+  saveSession(newSessionFormValues): void {
     let session: ISession = {
       id: undefined,
       name: newSessionFormValues.name,
@@ -47,5 +50,4 @@ export class CreateSessionComponent implements OnInit {
 
     console.log(session);
   }
-
 }
