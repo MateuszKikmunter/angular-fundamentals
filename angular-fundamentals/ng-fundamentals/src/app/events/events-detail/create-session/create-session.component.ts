@@ -1,16 +1,16 @@
-import { map } from 'rxjs/operators';
-import { element } from 'protractor';
 import { ISession } from './../../shared/event.session';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '../../../../../node_modules/@angular/forms';
 import { restrictedWords } from '../../shared/restricted-words.validator';
 
 @Component({
-  selector: 'app-create-session',
+  selector: 'create-session',
   templateUrl: './create-session.component.html',
   styleUrls: ['./create-session.component.css']
 })
 export class CreateSessionComponent implements OnInit {
+  @Output() saveNewSession = new EventEmitter();
+  @Output() cancelSession = new EventEmitter();
 
   newSessionForm: FormGroup;
   name: FormControl;
@@ -34,7 +34,7 @@ export class CreateSessionComponent implements OnInit {
       duration: this.duration,
       level: this.level,
       abstract: this.abstract
-    })
+    });
   }
 
   saveSession(newSessionFormValues): void {
@@ -48,6 +48,10 @@ export class CreateSessionComponent implements OnInit {
       voters: []
     };
 
-    console.log(session);
+    this.saveNewSession.emit(session);
+  }
+
+  cancel() {
+    this.cancelSession.emit();
   }
 }
