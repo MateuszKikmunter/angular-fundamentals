@@ -1,7 +1,7 @@
 import { ISession } from './../shared/event.session';
 import { IEvent } from './../shared/event.model';
 import { EventService } from './../shared/event.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router'
 export class EventsDetailComponent implements OnInit {
   event: IEvent;
   addMode: boolean;
+  filterBy: string = "all";
 
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
@@ -32,7 +33,15 @@ export class EventsDetailComponent implements OnInit {
     this.toggleAddMode();
   }
 
-  cancelSessionCreation(){
+  cancelSessionCreation() {
     this.toggleAddMode();
+  }
+
+  setFilterValue(value: string): void {
+    this.filterBy = value;
+  }
+
+  checkFilterValue(value: string): boolean {
+    return this.filterBy === value;
   }
 }
