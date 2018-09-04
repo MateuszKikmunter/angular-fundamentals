@@ -26,10 +26,17 @@
     </div>
 
     <div class="col-md-7">
-      <button class="btn btn-default" [class.active]="checkFilterValue('all')" (click)="setFilterValue('all')">All</button>
-      <button class="btn btn-default" [class.active]="checkFilterValue('beginner')" (click)="setFilterValue('beginner')">Beginner</button>
-      <button class="btn btn-default" [class.active]="checkFilterValue('intermediate')" (click)="setFilterValue('intermediate')">Intermediate</button>
-      <button class="btn btn-default" [class.active]="checkFilterValue('advanced')" (click)="setFilterValue('advanced')">Advanced</button>
+      <div class="btn-group btn-group-sm" style="margin-left: 20px; margin-right: 20px;">
+        <button class="btn btn-default" [class.active]="checkSortByValue('name')" (click)="setSortByValue('name')">By Name</button>
+        <button class="btn btn-default" [class.active]="checkSortByValue('votes')" (click)="setSortByValue('votes')">By Votes</button>
+      </div>
+
+      <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" [class.active]="checkFilterValue('all')" (click)="setFilterValue('all')">All</button>
+        <button class="btn btn-default" [class.active]="checkFilterValue('beginner')" (click)="setFilterValue('beginner')">Beginner</button>
+        <button class="btn btn-default" [class.active]="checkFilterValue('intermediate')" (click)="setFilterValue('intermediate')">Intermediate</button>
+        <button class="btn btn-default" [class.active]="checkFilterValue('advanced')" (click)="setFilterValue('advanced')">Advanced</button>
+      </div>
     </div>
 
     <div class="col-md-2">
@@ -37,6 +44,6 @@
     </div>
   </div>
 
-  <session-list *ngIf="!addMode" [filterBy]="filterBy" [sessions]="event?.sessions"></session-list>
+  <session-list *ngIf="!addMode" [filterBy]="filterBy" [sessions]="event?.sessions" [sortBy]="sortBy"></session-list>
   <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelSession)="cancelSessionCreation()"></create-session>
 </div>

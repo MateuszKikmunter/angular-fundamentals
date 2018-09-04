@@ -11,6 +11,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 export class SessionListComponent implements OnInit, OnChanges {
   @Input() sessions: ISession[];
   @Input() filterBy: string;
+  @Input() sortBy: string;
   visibleSessions: ISession[] = [];
   constructor() { }
 
@@ -19,6 +20,7 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.filterSessions();
+    this.sortSessions();
   }
 
   filterSessions(): ISession[] {
@@ -27,7 +29,16 @@ export class SessionListComponent implements OnInit, OnChanges {
         ? this.sessions
         : this.sessions.filter(s => s.level.toLocaleLowerCase() === this.filterBy);
 
-        return this.visibleSessions;
+      return this.visibleSessions;
+    }
+  }
+
+  sortSessions(): ISession[] {
+    if(this.sessions){
+      this.visibleSessions = this.filterSessions();
+      return this.sortBy === 'name' 
+      ? this.visibleSessions.sort((first, second) => (first.name < second.name ? -1 : 1))
+      : this.visibleSessions.sort((first, second) => (first.voters.length > second.voters.length ? -1 : 1));
     }
   }
 

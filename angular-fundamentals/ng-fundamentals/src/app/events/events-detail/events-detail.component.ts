@@ -1,7 +1,7 @@
 import { ISession } from './../shared/event.session';
 import { IEvent } from './../shared/event.model';
 import { EventService } from './../shared/event.service';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -12,6 +12,7 @@ export class EventsDetailComponent implements OnInit {
   event: IEvent;
   addMode: boolean;
   filterBy: string = "all";
+  sortBy: string = "name";
 
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
@@ -43,5 +44,13 @@ export class EventsDetailComponent implements OnInit {
 
   checkFilterValue(value: string): boolean {
     return this.filterBy === value;
+  }
+
+  setSortByValue(value: string): void {
+    this.sortBy = value;
+  }
+
+  checkSortByValue(value: string): boolean {
+    return this.sortBy === value;
   }
 }

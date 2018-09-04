@@ -10,3 +10,7 @@
 a {
     cursor: pointer;
 }
+
+.btn.active {
+    background-color: #df691a; 
+}
