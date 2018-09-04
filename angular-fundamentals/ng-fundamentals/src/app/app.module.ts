@@ -14,7 +14,13 @@ import {
   EventRouterActivator,
   DurationPipe } from './events/index';
 
-import { JQ_TOKEN, TOASTR_TOKEN, Toastr, CollapsibleWellComponent } from './common/index';
+import { 
+  JQ_TOKEN, 
+  TOASTR_TOKEN, 
+  Toastr, 
+  CollapsibleWellComponent,
+  SimpleModalComponent 
+} from './common/index';
 import { EventsAppComponent } from './events-app/events-app.component';
 import { NavComponent } from './nav/nav.component';
 import { appRoutes } from './routes';
@@ -39,7 +45,8 @@ let jQuery = window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
