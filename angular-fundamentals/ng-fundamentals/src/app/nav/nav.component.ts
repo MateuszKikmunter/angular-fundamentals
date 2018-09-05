@@ -9,7 +9,7 @@ import { AuthService } from '../user/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  foundSessions: ISession[] = [];
+  foundSessions: ISession[];
 
   constructor(public authService: AuthService, private eventService: EventService) { }
 
@@ -17,10 +17,10 @@ export class NavComponent implements OnInit {
   }
 
   searchSessions(searchTerm: string): void {
-    this.eventService.searchSessions(searchTerm).subscribe(sessions => {
-      this.foundSessions = sessions;
-      console.log(sessions);
-    })
-
+    if (searchTerm) {
+      this.eventService.searchSessions(searchTerm).subscribe(sessions => {
+        this.foundSessions = sessions;
+      })
+    }
   }
 }
