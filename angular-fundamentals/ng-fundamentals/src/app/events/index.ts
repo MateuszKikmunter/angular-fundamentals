@@ -6,3 +6,4 @@ export * from '../common/event-router-activator.service';
 export * from './events-list/events-list.component';
 export * from './shared/index';
 export * from './events-detail/index';
+export * from './location-validator';

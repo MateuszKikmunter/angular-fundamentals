@@ -27,10 +27,10 @@
           placeholder="event price..." />
       </div>
 
-      <div ngModelGroup="location" #locationGroup="ngModelGroup" validateLocation>
+      <div ngModelGroup="location" #locationGroup="ngModelGroup" validate-location>
         <div class="form-group">
           <label for="address">Event Location:</label>
-          <em *ngIf="locationGroup?.invalid && locationGroup?.touched">You must enter either the foll location OR an
+          <em *ngIf="locationGroup?.invalid && locationGroup?.touched">You must enter either the full location OR an
             online Url</em>
           <input (ngModel)="newEvent.location.address" name="address" id="address" type="text" class="form-control"
             placeholder="Address of event..." />
