@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { 
+import {
   EventsListComponent,
   EventThumbnailComponent,
   EventService,
@@ -12,12 +12,15 @@ import {
   CreateEventComponent,
   EventsDetailComponent,
   EventRouterActivator,
-  DurationPipe } from './events/index';
+  DurationPipe,
+  UpvoteComponent,
+  VoterService
+} from './events/index';
 
-import { 
-  JQ_TOKEN, 
-  TOASTR_TOKEN, 
-  Toastr, 
+import {
+  JQ_TOKEN,
+  TOASTR_TOKEN,
+  Toastr,
   CollapsibleWellComponent,
   SimpleModalComponent,
   ModalTriggerDirective
@@ -30,7 +33,7 @@ import { AuthService } from './user/auth.service';
 import { CreateSessionComponent } from './events/events-detail/create-session/create-session.component';
 import { SessionListComponent } from './events/events-detail/session-list/session-list.component';
 
-let toastr:Toastr = window['toastr'];
+let toastr: Toastr = window['toastr'];
 let jQuery = window['$'];
 
 @NgModule({
@@ -48,7 +51,8 @@ let jQuery = window['$'];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -72,14 +76,15 @@ let jQuery = window['$'];
       provide: "canCancelEventCreation",
       useValue: checkDirtyState
     },
-    AuthService
+    AuthService,
+    VoterService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
 export function checkDirtyState(component: CreateEventComponent) {
-  if(component.isDirty){
+  if (component.isDirty) {
     return confirm("Are you sure? Unsaved changes will be lost.");
   }
 }
