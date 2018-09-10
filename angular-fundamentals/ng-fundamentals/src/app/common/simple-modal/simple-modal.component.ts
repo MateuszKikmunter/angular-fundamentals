@@ -23,6 +23,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SimpleModalComponent implements OnInit {
   @Input() title: string;
   @Input() elementId: string;
+  @Input() closeOnbodyClick: string;
   @ViewChild("modalContainer") containerEl: ElementRef;
 
   constructor(@Inject(JQ_TOKEN) private $: any) { }
@@ -31,6 +32,8 @@ export class SimpleModalComponent implements OnInit {
   }
 
   closeModal(): void {
-    this.$(this.containerEl.nativeElement).modal("hide");
+    if (this.closeOnbodyClick.toLocaleLowerCase() === "true") {
+      this.$(this.containerEl.nativeElement).modal("hide");
+    }
   }
 }

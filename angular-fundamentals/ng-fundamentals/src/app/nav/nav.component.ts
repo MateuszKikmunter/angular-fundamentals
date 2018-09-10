@@ -17,10 +17,12 @@ export class NavComponent implements OnInit {
   }
 
   searchSessions(searchTerm: string): void {
-    if (searchTerm) {
+    if (searchTerm.length > 0) {
       this.eventService.searchSessions(searchTerm).subscribe(sessions => {
         this.foundSessions = sessions;
       })
+    } else {
+      this.foundSessions = [];
     }
   }
 }
