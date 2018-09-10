@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server": "node node_modules/ngf-server/server.js"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +25,8 @@
     "ngf-bootstrap": "0.0.5",
     "rxjs": "6.0.0",
     "toastr": "^2.1.4",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "ngf-server": "^1.0.1"
   },
   "devDependencies": {
     "@angular/compiler-cli": "6.0.3",
@@ -45,6 +47,7 @@
     "karma-jasmine-html-reporter": "0.2.2",
     "protractor": "5.3.0",
     "ts-node": "5.0.1",
-    "tslint": "5.9.1"
+    "tslint": "5.9.1",
+    "ngf-server": "^1.0.1"
   }
 }
