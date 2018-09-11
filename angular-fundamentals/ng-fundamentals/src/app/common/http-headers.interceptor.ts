@@ -7,11 +7,13 @@ export class HttpHeadersInterceptor implements HttpInterceptor {
     constructor() {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if(req.headers.has("Content-Type")){
-            req = req.clone({ headers: req.headers.set('Content-Type', 'application/json') });
+        let applicationJson = "application/json";
+        let contentType = "Content-Type";
+        if(!req.headers.has(contentType)){
+            req = req.clone({ headers: req.headers.set(contentType, applicationJson) });
         }
 
-        req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
+        req = req.clone({ headers: req.headers.set('Accept', applicationJson) });
         return next.handle(req);
     }
 }

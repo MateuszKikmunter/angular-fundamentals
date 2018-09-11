@@ -1,3 +1,4 @@
+import { EventsDataService } from './../../common/events-data.service';
 import { IEvent } from './../shared/event.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -16,11 +17,12 @@ import { EventService } from '../shared/event.service';
 export class EventsListComponent implements OnInit {
   events: IEvent[];
 
-  constructor(private eventService: EventService, private route: ActivatedRoute) { }
+  constructor(private eventService: EventService, private route: ActivatedRoute, private eventDataService: EventsDataService) { }
 
   ngOnInit() {
-    //this.eventService.getEvents().subscribe(events => this.events = events);
-    this.events = this.route.snapshot.data["events"]; // --> data comes from a resolver defined in a service and used in routes
+    let currentExistingEvents = this.route.snapshot.data["events"]; // --> data comes from a resolver defined in a service and used in routes
+    this.events = currentExistingEvents;
+    this.eventDataService.setCurrentEvents(currentExistingEvents);
   }
 
 }

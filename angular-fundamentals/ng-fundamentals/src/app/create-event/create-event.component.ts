@@ -1,3 +1,4 @@
+import { EventsDataService } from './../common/events-data.service';
 import { EventService } from './../events/shared/event.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ export class CreateEventComponent implements OnInit {
   isDirty: boolean = true;
   newEvent: IEvent;
 
-  constructor(private router: Router, private eventService: EventService) { }
+  constructor(private router: Router, private eventService: EventService, private eventDataService: EventsDataService) { }
 
   ngOnInit() {
   }
@@ -23,5 +24,7 @@ export class CreateEventComponent implements OnInit {
         this.isDirty = false;
         this.router.navigate(["/events"]);
      });
+
+     this.eventService.getEvents().subscribe(events => this.eventDataService.setCurrentEvents(events));
   }
 }
