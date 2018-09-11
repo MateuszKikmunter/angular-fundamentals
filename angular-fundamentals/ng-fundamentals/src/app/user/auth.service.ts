@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { IUser } from './user';
 import { Injectable } from '@angular/core';
+import { tap, catchError } from 'rxjs/operators';
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +11,21 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   currentUser: IUser;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   loginUser(userName: string, password: string) {
-    this.currentUser = {
-      id: 1,
-      firstName: "John",
-      lastName: "Papa",
-      userName: "john.papa"
-    }
+    let loginInfo = {
+      username: userName,
+      password: password
+    };
+
+    return this.http.post("/api/login", loginInfo)
+      .pipe(tap((data => {
+        this.currentUser = <IUser>data["user"];
+      })))
+      .pipe(catchError(err => {
+        return of(false);
+      }));
   }
 
   isAuthenticated() {
