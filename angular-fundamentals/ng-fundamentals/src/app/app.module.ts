@@ -12,11 +12,11 @@ import {
   EventsListResolver,
   CreateEventComponent,
   EventsDetailComponent,
-  EventRouterActivator,
   DurationPipe,
   UpvoteComponent,
   VoterService,
-  LocationValidator
+  LocationValidator,
+  EventResolverService
 } from './events/index';
 
 import {
@@ -74,7 +74,7 @@ let jQuery = window['$'];
       provide: JQ_TOKEN,
       useValue: jQuery
     },
-    EventRouterActivator,
+    EventResolverService,
     EventsListResolver,
     {
       provide: "canCancelEventCreation",

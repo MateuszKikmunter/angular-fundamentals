@@ -9,7 +9,7 @@ import { map } from "rxjs/operators";
 export class EventsListResolver implements Resolve<any> {
 
   resolve(){
-    return this.eventService.getEvents().pipe(map(events => events));
+    return this.eventService.getEvents(); //.pipe(map(events => events));
   }
 
   constructor(private eventService: EventService) { }
