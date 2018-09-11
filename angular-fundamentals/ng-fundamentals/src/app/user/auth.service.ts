@@ -34,15 +34,22 @@ export class AuthService {
 
   checkAuthenticationStatus(): any {
     this.http.get("/api/currentIdentity").pipe(tap(data => {
-      if(data instanceof Object){
+      if (data instanceof Object) {
         this.currentUser = <IUser>data;
       }
     }))
-    .subscribe();
+      .subscribe();
   }
 
   updateCurrentUser(firstName: string, lastName: string) {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
+
+    return this.http.put(`/api/users/${this.currentUser.id}`, this.currentUser);
+  }
+
+  logout() {
+    this.currentUser = undefined;
+    return this.http.post(`/api/logout`, {});
   }
 }
