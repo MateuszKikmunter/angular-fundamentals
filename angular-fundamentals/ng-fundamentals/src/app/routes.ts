@@ -8,7 +8,7 @@ import { EventsDetailComponent } from "./events/events-detail/events-detail.comp
 import { Routes } from "@angular/router";
 
 export const appRoutes: Routes = [
-    { path: 'events/new', component: CreateEventComponent, canDeactivate: ["canCancelEventCreation"] },
+    { path: 'events/new', component: CreateEventComponent },
     { path: 'events', component: EventsListComponent, resolve: { events: EventsListResolver } },
     { path: 'events/:id', component: EventsDetailComponent, resolve: { event: EventResolverService } },
     { path: 'events/session/new', component: CreateSessionComponent },

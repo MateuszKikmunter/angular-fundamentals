@@ -1,7 +1,10 @@
+import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { ISession } from './../shared/event.session';
 import { EventService } from './../shared/event.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +12,29 @@ import { ActivatedRoute } from '@angular/router';
 export class VoterService {
   private session: ISession;
 
-  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute) { }
+  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
-  addVoter(session: ISession, userName: string): void {
+  addVoter(eventId: number, session: ISession, userName: string): void {
     session.voters.push(userName);
+    const url = `/api/events/${eventId}/sessions/${session.id}/voters/${userName}`;
+    this.http.post(url, {}).pipe(catchError(this.handleError<ISession>("addVoter"))).subscribe();
   }
 
-  deleteVoter(session: ISession, userName: string): void {
+  deleteVoter(eventId: number, session: ISession, userName: string): void {
     session.voters = session.voters.filter(v => v.toLocaleLowerCase() !== userName.toLocaleLowerCase());
+    this.http.delete<any>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`, {})
+      .pipe(catchError(this.handleError<any>("deleteVoter")))
+      .subscribe();
   }
 
   userHasVoted(session: ISession, userName: string): boolean {
     return session.voters.some(v => v.toLocaleLowerCase() === userName.toLocaleLowerCase());
+  }
+
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }

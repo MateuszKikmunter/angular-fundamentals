@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
     if (searchTerm.length > 0) {
       this.eventService.searchSessions(searchTerm).subscribe(sessions => {
         this.foundSessions = sessions;
+        console.log(this.foundSessions);
       })
     } else {
       this.foundSessions = [];
