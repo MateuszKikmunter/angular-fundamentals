@@ -1,3 +1,4 @@
+import { EventsDataService } from './../common/events-data.service';
 import { IEvent } from './../events/shared/event.model';
 import { EventService } from './../events/shared/event.service';
 import { ISession } from './../events/shared/event.session';
@@ -13,13 +14,9 @@ export class NavComponent implements OnInit {
   foundSessions: ISession[];
   events: IEvent[];
 
-  constructor(public authService: AuthService, private eventService: EventService) { }
+  constructor(public authService: AuthService, private eventService: EventService, private eventDataService: EventsDataService) { }
 
-  ngOnInit() {
-    this.eventService.getEvents().subscribe(events => {
-      this.events = events;
-    });
-  }
+  ngOnInit() {}
 
   searchSessions(searchTerm: string): void {
     if (searchTerm.length > 0) {
