@@ -1,7 +1,7 @@
 import { EventsDataService } from './../common/events-data.service';
 import { EventService } from './../events/shared/event.service';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IEvent } from '../events';
 
 @Component({
@@ -10,7 +10,6 @@ import { IEvent } from '../events';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-
   isDirty: boolean = true;
   newEvent: IEvent;
 
