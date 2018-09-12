@@ -12,7 +12,7 @@ import { Observable, of } from 'rxjs';
 export class VoterService {
   private session: ISession;
 
-  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   addVoter(eventId: number, session: ISession, userName: string): void {
     session.voters.push(userName);
@@ -22,7 +22,7 @@ export class VoterService {
 
   deleteVoter(eventId: number, session: ISession, userName: string): void {
     session.voters = session.voters.filter(v => v.toLocaleLowerCase() !== userName.toLocaleLowerCase());
-    this.http.delete<any>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`, {})
+    this.http.delete<any>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`)
       .pipe(catchError(this.handleError<any>("deleteVoter")))
       .subscribe();
   }
