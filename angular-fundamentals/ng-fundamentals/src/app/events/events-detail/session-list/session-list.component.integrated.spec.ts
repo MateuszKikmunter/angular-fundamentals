@@ -67,6 +67,9 @@ describe("SessionListComponent", () => {
             fixture.detectChanges();
 
             expect(element.querySelector("[well-title]").textContent).toContain("Session 1");
+            
+            // this is doing the same what code above, but uses debug element instead of native element
+            expect(debugEl.query(By.css("[well-title]")).nativeElement.textContent).toContain("Session 1");
         });
     });
 });
