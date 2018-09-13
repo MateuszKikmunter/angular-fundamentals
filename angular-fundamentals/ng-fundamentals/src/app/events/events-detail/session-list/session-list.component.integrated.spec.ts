@@ -2,7 +2,7 @@ import { EventService } from './../../shared/event.service';
 import { CollapsibleWellComponent } from './../../../common/collapsible-well/collapsible-well.component';
 import { UpvoteComponent } from './../upvote/upvote.component';
 import { TestBed, async, ComponentFixture } from "@angular/core/testing";
-import { DebugElement } from "@angular/core";
+import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from '@angular/platform-browser';
 
 import { ISession } from './../../shared/event.session';
@@ -31,13 +31,20 @@ describe("SessionListComponent", () => {
 
         TestBed.configureTestingModule({
             imports: [],
-            declarations: [SessionListComponent, UpvoteComponent, DurationPipe, CollapsibleWellComponent],
+            declarations: [
+                SessionListComponent, 
+                UpvoteComponent, 
+                DurationPipe, 
+                CollapsibleWellComponent
+            ],
             providers: [
                 { provide: AuthService, useValue: mockAuthService },
                 { provide: VoterService, useValue: mockVoterService },
                 { provide: EventService, useValue: mockEventService }
             ],
-            schemas: []
+            schemas: [
+                //NO_ERRORS_SCHEMA
+            ]
         });
     }));
 
@@ -67,7 +74,7 @@ describe("SessionListComponent", () => {
             fixture.detectChanges();
 
             expect(element.querySelector("[well-title]").textContent).toContain("Session 1");
-            
+
             // this is doing the same what code above, but uses debug element instead of native element
             expect(debugEl.query(By.css("[well-title]")).nativeElement.textContent).toContain("Session 1");
         });
